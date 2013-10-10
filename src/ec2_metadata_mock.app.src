@@ -1,0 +1,12 @@
+{application, ec2_metadata_mock,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { ec2_metadata_mock_app, []}},
+  {env, []}
+ ]}.
