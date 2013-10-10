@@ -1,12 +1,13 @@
 {application, ec2_metadata_mock,
  [
-  {description, ""},
+  {description, "mock ec2 metadata service"},
   {vsn, "1"},
   {registered, []},
   {applications, [
                   kernel,
-                  stdlib
+                  stdlib,
+                  cowboy
                  ]},
   {mod, { ec2_metadata_mock_app, []}},
-  {env, []}
+  {env, [{ http_port, 8080 }]}
  ]}.
