@@ -29,7 +29,7 @@ routes() ->
     [
       {'_', [
               {"/", ec2_metadata_mock_root_handler, []},
-              {"/latest/", ec2_metadata_mock_data_handler, []}
+              {"/latest/[...]", ec2_metadata_mock_data_handler, []}
             ]}
     ].
 
