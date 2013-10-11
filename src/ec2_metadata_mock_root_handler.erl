@@ -1,4 +1,4 @@
--module(ec2_metadata_mock_handler).
+-module(ec2_metadata_mock_root_handler).
 
 -export([init/3]).
 -export([handle/2]).
@@ -8,7 +8,7 @@ init(_Transport, Req, []) ->
     {ok, Req, undefined}.
 
 handle(Req, State) ->
-    {ok, Req2} = cowboy_req:reply(200, [], <<"Hello World">>, Req),
+    {ok, Req2} = cowboy_req:reply(200, [{<<"content-type">>, <<"text/plain">>}], <<"latest/">>, Req),
     {ok, Req2, State}.
 
 terminate(_Reason, _Req, _State) ->
