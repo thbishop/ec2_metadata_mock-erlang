@@ -30,14 +30,19 @@ get_data_from_path(Path) ->
     RelativePath = relative_path(Path),
     AllData = load_metadata_content(),
 
-    KeyData = ej:get(list_to_tuple(string:tokens(RelativePath, "/")), AllData),
-    case (is_tuple(KeyData)) of
-        true ->
-            Keys = [element(1, X) || X <- element(1, KeyData)],
-            list_to_binary(lists:map(fun(X) -> [X, <<"\n">>] end, Keys));
-        false ->
-            KeyData
-
+    case (string:tokens(RelativePath, "/")) of
+        [] ->
+          Keys = [element(1, X) || X <- element(1, AllData)],
+          list_to_binary(lists:map(fun(X) -> [X, <<"\n">>] end, Keys));
+        _ ->
+            KeyData = ej:get(list_to_tuple(string:tokens(RelativePath, "/")), AllData),
+            case (is_tuple(KeyData)) of
+                true ->
+                    Keys = [element(1, X) || X <- element(1, KeyData)],
+                    list_to_binary(lists:map(fun(X) -> [X, <<"\n">>] end, Keys));
+                false ->
+                    KeyData
+            end
     end.
 
 load_metadata_content() ->
