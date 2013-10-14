@@ -1,2 +1,51 @@
-{ "meta-data": {"ami-id":"ami-ab12d590","ami-launch-index":"1","ami-manifest-path":"(unknown)","block-device-mapping":{"ami":"/dev/sda1","ephemeral0":"sdb","ephemeral1":"sdg","root":"/dev/sda1"},"hostname":"ip-10-80-104-34","instance-action":"none","instance-id":"i-2b373b70","instance-type":"m1.medium","kernel-id":"aki-712c7f34","local-hostname":"ip-10-80-104-34","local-ipv4":"10.80.104.34","mac":"02:e8:42:bd:f5:9d","network":{"interfaces":{"macs":{"02:e8:42:bd:f5:9d":{"device-number":"0","interface-id":"eni-53dbda3b","local-hostname":"ip-10-80-104-34","local-ipv4s":"10.80.104.34","mac":"02:e8:42:bd:f5:9d","owner-id":"87680764014","security-group-ids":"sg-98123447","security-groups":"my-security-group-1","subnet-id":"subnet-8174925f","subnet-ipv4-cidr-block":"10.0.100.0/26","vpc-id":"vpc-891bac3b","vpc-ipv4-cidr-block":"10.0.100.0/24"}}}},"placement":{"availability-zone":"us-west-1a"},"profile":"default-paravirtual","public-keys":{"0=control":"ssh-rsa 18djjvmdkei85oqlaghi8AQABAAABAQCzA3cbSfr82NE6zaZvuF9XkujlJU4B6oorNVqh2hXG/L5+vDO1Rj72s0SP1YdtgAEk+N4uE9bB1ZaMezAEbpw3VoBHAYDirWDhp/E0zZAlvjjqJtcQVediDx5/iXQNU/hu7oiBS02o+EjSJy/n02azMRUpadjfERVTcgLAPvwT5HnDr0+ZBaG0Cje/ZfVLUH3ZesrH+oqCDB4KkSOb6Cwq+63cKKZsN7wAgZAqKRlSm9ajeXFNQzXwAwOlP0dk/pBo7pxsy84yY14jQ5uvm9i9eakMbiyeit8sAyYJdK2ElYon78tYRIfBE9ze3oVHq89K/gPck/6hSXSR89XIFTfz control"},"reservation-id":"r-847abcce","security-groups":"my-security-group-1"},
-"user-data": "foo" }
+{
+  "meta-data": {
+    "ami-id": "ami-ab12d590",
+    "ami-launch-index": "1",
+    "ami-manifest-path": "(unknown)",
+    "block-device-mapping": {
+      "ami": "/dev/sda1",
+      "ephemeral0": "sdb",
+      "ephemeral1": "sdg",
+      "root": "/dev/sda1"
+    },
+    "hostname": "ip-10-80-104-34",
+    "instance-action": "none",
+    "instance-id": "i-2b373b70",
+    "instance-type": "m1.medium",
+    "kernel-id": "aki-712c7f34",
+    "local-hostname": "ip-10-80-104-34",
+    "local-ipv4": "10.80.104.34",
+    "mac": "02:e8:42:bd:f5:9d",
+    "network": {
+      "interfaces": {
+        "macs": {
+          "02:e8:42:bd:f5:9d": {
+            "device-number": "0",
+            "interface-id": "eni-53dbda3b",
+            "local-hostname": "ip-10-80-104-34",
+            "local-ipv4s": "10.80.104.34",
+            "mac": "02:e8:42:bd:f5:9d",
+            "owner-id": "87680764014",
+            "security-group-ids": "sg-98123447",
+            "security-groups": "my-security-group-1",
+            "subnet-id": "subnet-8174925f",
+            "subnet-ipv4-cidr-block": "10.0.100.0/26",
+            "vpc-id": "vpc-891bac3b",
+            "vpc-ipv4-cidr-block": "10.0.100.0/24"
+          }
+        }
+      }
+    },
+    "placement": {
+      "availability-zone": "us-west-1a"
+    },
+    "profile": "default-paravirtual",
+    "public-keys": {
+      "0=control": "ssh-rsa 18djjvmdkei85oqlaghi8AQABAAABAQCzA3cbSfr82NE6zaZvuF9XkujlJU4B6oorNVqh2hXG/L5+vDO1Rj72s0SP1YdtgAEk+N4uE9bB1ZaMezAEbpw3VoBHAYDirWDhp/E0zZAlvjjqJtcQVediDx5/iXQNU/hu7oiBS02o+EjSJy/n02azMRUpadjfERVTcgLAPvwT5HnDr0+ZBaG0Cje/ZfVLUH3ZesrH+oqCDB4KkSOb6Cwq+63cKKZsN7wAgZAqKRlSm9ajeXFNQzXwAwOlP0dk/pBo7pxsy84yY14jQ5uvm9i9eakMbiyeit8sAyYJdK2ElYon78tYRIfBE9ze3oVHq89K/gPck/6hSXSR89XIFTfz control"
+    },
+    "reservation-id": "r-847abcce",
+    "security-groups": "my-security-group-1"
+  },
+  "user-data": "foo"
+}
