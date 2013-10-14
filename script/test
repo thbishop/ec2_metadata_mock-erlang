@@ -1,0 +1,4 @@
+#!/bin/bash
+
+./rebar compile && \
+  ERL_AFLAGS="-s ec2_metadata_mock" ./deps/etest/bin/etest-runner
