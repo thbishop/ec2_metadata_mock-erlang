@@ -38,3 +38,8 @@ test_network_interfaces_macs() ->
     Response = ?perform_get("http://localhost:8080/latest/meta-data/network/interfaces/macs/"),
     ?assert_status(200, Response),
     ?assert_body("02:e8:42:bd:f5:9d/\n", Response).
+
+test_user_data() ->
+    Response = ?perform_get("http://localhost:8080/latest/user-data/"),
+    ?assert_status(200, Response),
+    ?assert_body("foo\n", Response).
