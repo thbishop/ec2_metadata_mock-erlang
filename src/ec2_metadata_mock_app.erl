@@ -33,7 +33,7 @@ routes() ->
     ].
 
 port() ->
-    case os:getenv("PORT") of
+    case os:getenv("EC2_METADATA_PORT") of
       false ->
         {ok, Port} = application:get_env(http_port),
         Port;

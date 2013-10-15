@@ -55,8 +55,17 @@ get_data_from_path(Path) ->
     end.
 
 load_metadata_content() ->
-    {ok, Json} = file:read_file("metadata.json"),
+    {ok, Json} = file:read_file(metadata_file()),
     jiffy:decode(Json).
+
+metadata_file() ->
+  case os:getenv("EC2_METADATA_FILE") of
+      false ->
+          {ok, Dir} = file:get_cwd(),
+          filename:join([Dir, "metadata.json"]);
+      Other ->
+          Other
+  end.
 
 relative_path(Path) ->
     binary_to_list(Path) -- "/latest".

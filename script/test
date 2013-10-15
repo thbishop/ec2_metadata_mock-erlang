@@ -1,4 +1,11 @@
 #!/bin/bash
 
-./rebar compile && \
-  ERL_AFLAGS="-s ec2_metadata_mock" ./deps/etest/bin/etest-runner
+set -e
+
+metadata_file=$(pwd)/test/data/metadata.json
+
+echo "Using metadata file $metadata_file"
+
+./rebar compile
+
+env EC2_METADATA_FILE=$metadata_file ERL_AFLAGS="-s ec2_metadata_mock" ./deps/etest/bin/etest-runner

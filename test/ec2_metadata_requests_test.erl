@@ -42,4 +42,4 @@ test_network_interfaces_macs() ->
 test_user_data() ->
     Response = ?perform_get("http://localhost:8080/latest/user-data/"),
     ?assert_status(200, Response),
-    ?assert_body("foo\n", Response).
+    ?assert_body("foo", Response).
