@@ -14,7 +14,7 @@ handle(Req, State) ->
         0 ->
             return_404(Req2, State);
         _ ->
-            Body = get_data_from_path(Path),
+            Body = ec2_metadata_mock_data_loader:data_from_path(Path),
             {ok, Req3} = cowboy_req:reply(200,
                                           [{<<"content-type">>, <<"text/plain">>}],
                                           Body,
@@ -26,50 +26,6 @@ terminate(_Reason, _Req, _State) ->
     ok.
 
 %% internal
-format_key(KeyData) ->
-  {Key, _} = KeyData,
-  case KeyData of
-      {_, true} ->
-          [Key, <<"\/\n">>];
-      {_, false} ->
-          [Key, <<"\n">>]
-  end.
-
-get_data_from_path(Path) ->
-    RelativePath = relative_path(Path),
-    AllData = load_metadata_content(),
-
-    case (string:tokens(RelativePath, "/")) of
-        [] ->
-            Keys = [{element(1, X), is_tuple(element(2, X))} || X <- element(1, AllData)],
-            list_to_binary(lists:map(fun(X) -> format_key(X) end, Keys));
-        _ ->
-            KeyData = ej:get(list_to_tuple(string:tokens(RelativePath, "/")), AllData),
-            case (is_tuple(KeyData)) of
-                true ->
-                    Keys = [{element(1, X), is_tuple(element(2, X))} || X <- element(1, KeyData)],
-                    list_to_binary(lists:map(fun(X) ->format_key(X) end, Keys));
-                false ->
-                    KeyData
-            end
-    end.
-
-load_metadata_content() ->
-    {ok, Json} = file:read_file(metadata_file()),
-    jiffy:decode(Json).
-
-metadata_file() ->
-  case os:getenv("EC2_METADATA_FILE") of
-      false ->
-          {ok, Dir} = file:get_cwd(),
-          filename:join([Dir, "metadata.json"]);
-      Other ->
-          Other
-  end.
-
-relative_path(Path) ->
-    binary_to_list(Path) -- "/latest".
-
 return_404(Req, State) ->
     {ok, Req2} = cowboy_req:reply(404, [], <<"Not Found">>, Req),
     {ok, Req2, State}.
