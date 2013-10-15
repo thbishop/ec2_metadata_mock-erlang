@@ -9,5 +9,6 @@
                   cowboy
                  ]},
   {mod, { ec2_metadata_mock_app, []}},
-  {env, [{ http_port, 8080 }]}
+  {env, [{ http_port, 8080 },
+         { ip_address, {0, 0, 0, 0} }]}
  ]}.
