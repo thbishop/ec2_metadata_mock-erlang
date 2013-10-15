@@ -18,15 +18,16 @@ data_from_path(Path) ->
             end
     end.
 
+%% internal
 all_data() ->
     {ok, Json} = file:read_file(metadata_file()),
     jiffy:decode(Json).
 
 format_key(KeyData) ->
-  case KeyData of
-      {Key, true} -> [Key, <<"\/\n">>];
-      {Key, false} -> [Key, <<"\n">>]
-  end.
+    case KeyData of
+        {Key, true} -> [Key, <<"\/\n">>];
+        {Key, false} -> [Key, <<"\n">>]
+    end.
 
 has_children(Key) ->
     is_tuple(Key).
@@ -39,13 +40,13 @@ list_of_keys(Data) ->
     list_to_binary(lists:map(fun(X) -> format_key(X) end, Keys)).
 
 metadata_file() ->
-  case os:getenv("EC2_METADATA_FILE") of
-      false ->
-          {ok, Dir} = file:get_cwd(),
-          filename:join([Dir, "metadata.json"]);
-      Other ->
-          Other
-  end.
+    case os:getenv("EC2_METADATA_FILE") of
+        false ->
+            {ok, Dir} = file:get_cwd(),
+            filename:join([Dir, "metadata.json"]);
+        Other ->
+            Other
+    end.
 
 relative_path(Path) ->
     binary_to_list(Path) -- "/latest".
