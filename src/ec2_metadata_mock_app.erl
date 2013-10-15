@@ -13,8 +13,7 @@
 start(_StartType, _StartArgs) ->
     Routes    = routes(),
     Dispatch  = cowboy_router:compile(Routes),
-    Port      = port(),
-    TransOpts = [{port, Port}],
+    TransOpts = [{port, port()}],
     ProtoOpts = [{env, [{dispatch, Dispatch}]}],
     {ok, _}   = cowboy:start_http(http, ?C_ACCEPTORS, TransOpts, ProtoOpts),
     ec2_metadata_mock_sup:start_link().
@@ -39,5 +38,5 @@ port() ->
         {ok, Port} = application:get_env(http_port),
         Port;
       Other ->
-        Other
+        list_to_integer(Other)
     end.
