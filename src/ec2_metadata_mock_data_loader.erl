@@ -4,18 +4,11 @@
 
 data_from_path(Path) ->
     RelativePath = relative_path(Path),
-    AllData = all_data(),
 
     case (string:tokens(RelativePath, "/")) of
-        [] -> list_of_keys(AllData);
+        [] -> list_of_keys(all_data());
         _ ->
-            KeyData = key_data(AllData, RelativePath),
-            case has_children(KeyData) of
-                true ->
-                    list_of_keys(KeyData);
-                false ->
-                    KeyData
-            end
+            key_data(RelativePath)
     end.
 
 %% internal
@@ -32,8 +25,14 @@ format_key(KeyData) ->
 has_children(Key) ->
     is_tuple(Key).
 
-key_data(Data, Path) ->
-    ej:get(list_to_tuple(string:tokens(Path, "/")), Data).
+key_data(Path) ->
+      KeyData = ej:get(list_to_tuple(string:tokens(Path, "/")), all_data()),
+      case has_children(KeyData) of
+          true ->
+              list_of_keys(KeyData);
+          false ->
+              KeyData
+      end.
 
 list_of_keys(Data) ->
     Keys = [{element(1, X), has_children(element(2, X))} || X <- element(1, Data)],
