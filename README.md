@@ -1,6 +1,7 @@
 ## EC2 Metadata Mock Service
 
-This provides a mock [AWS EC2 instance metadata/user data service](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html).
+This provides a mock [AWS EC2 instance metadata/user data service](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AESDG-chapter-instancedata.html). The data served through
+the mock service is read from a json file.
 
 
 ## Usage
@@ -26,6 +27,30 @@ And stop it with:
 
 ```shell
 rel/ec2_metadata_mock/bin/ec2_metadata_mock start
+```
+
+### Data
+By default, the mock service will look for a `metadata.json` in the current working directory.
+
+The file should provide the full set of data in the desired heirarchy.
+
+For example:
+
+```javascript
+{
+  "meta-data": {
+    "ami-id": "ami-77771920",
+    "ami-launch-index": "1",
+    ...
+  },
+  "user-data": "foo bar baz"
+}
+```
+
+If desired, you can tell the service where to the find the json file with the `EC2_METADATA_FILE` environment variable.
+
+```shell
+env EC2_METADATA_FILE=/var/tmp/foo.json rel/ec2_metadata_mock/bin/ec2_metadata_mock start
 ```
 
 ### Address/Port Binding
