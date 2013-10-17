@@ -103,5 +103,10 @@ sudo env EC2_METADATA_PORT=80 EC2_METADATA_IP_ADDRESS=169.254.169.254 \
   rel/ec2_metadata_mock/bin/ec2_metadata_mock start
 ```
 
+## Contribute
+* Fork the project
+* Make your feature addition or bug fix (with tests and docs) in a topic branch
+* Send a pull request and I'll get it integrated
+
 ## License
 See LICENSE file for details
