@@ -11,28 +11,27 @@ Download, install, compile, and create a release
 
 ```shell
 git clone https://github.com/thbishop/ec2_metadata_mock-erlang.git
-
 cd ec2_metadata_mock-erlang
-
+./rebar create-node nodeid=ec2_metadata_mock
 ./rebar get-deps compile generate
 ```
 
 You can then start it with:
 
 ```shell
-rel/ec2_metadata_mock/bin/ec2_metadata_mock stop
+env EC2_METADATA_FILE=$(pwd)/metadata.json rel/ec2_metadata_mock/bin/ec2_metadata_mock start
 ```
 
 And stop it with:
 
 ```shell
-rel/ec2_metadata_mock/bin/ec2_metadata_mock start
+rel/ec2_metadata_mock/bin/ec2_metadata_mock stop
 ```
 
 ### Data
-By default, the mock service will look for a `metadata.json` in the current working directory.
+By default, the mock service will look for a `metadata.json` file in the current working directory.
 
-The file should provide the full set of data in the desired heirarchy.
+The file should provide the desired data in a heirarchy.
 
 For example:
 
