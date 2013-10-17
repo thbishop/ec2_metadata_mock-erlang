@@ -80,19 +80,19 @@ sudo ifconfig lo0 alias 169.254.169.254
 If you want to remove the address, you can do so with:
 
 ```shell
-ifconfig lo0 -alias 172.16.123.1
+sudo ifconfig lo0 -alias 169.254.169.254
 ```
 
 On linux, you can do:
 
 ```shell
-ifconfig eth0:1 169.254.169.254
+sudo ifconfig eth0:1 169.254.169.254
 ```
 
 And to remove it:
 
 ```shell
-ifconfig eth0:1 down
+sudo ifconfig eth0:1 down
 ```
 
 And then start and bind to the new address:
